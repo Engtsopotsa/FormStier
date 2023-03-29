@@ -10,6 +10,13 @@ export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup; //Variable to store our form group
   stateOptions: string[] = ['PA', 'OH', 'MI'];
 
+  userAddressInfo: any = {
+    street: '1234 Main Street',
+    city: 'My City',
+    state: this.stateOptions[0],
+    zip: '12345',
+  };
+
   constructor() {}
 
   ngOnInit() {
@@ -22,6 +29,17 @@ export class SignUpComponent implements OnInit {
         state: new FormControl(''),
         zip: new FormControl(''),
       }),
+    });
+  }
+
+  autoFillAddress() {
+    this.signUpForm.patchValue({
+      address: {
+        street: this.userAddressInfo.street,
+        city: this.userAddressInfo.city,
+        state: this.userAddressInfo.state,
+        zip: this.userAddressInfo.zip,
+      },
     });
   }
 
