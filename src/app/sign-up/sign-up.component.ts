@@ -8,6 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup; //Variable to store our form group
+  stateOptions: string[] = ['PA', 'OH', 'MI'];
 
   constructor() {}
 
@@ -15,6 +16,12 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = new FormGroup({
       email: new FormControl(''),
       password: new FormControl(''),
+      address: new FormGroup({
+        street: new FormControl(''),
+        city: new FormControl(''),
+        state: new FormControl(''),
+        zip: new FormControl(''),
+      }),
     });
   }
 

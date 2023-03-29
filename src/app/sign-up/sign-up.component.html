@@ -10,7 +10,45 @@
       <label class="form-label">Password:</label>
       <input type="password" class="form-control" formControlName="password" />
     </div>
-    <button class="btn btn-success" type="submit">Save</button>
-    <button class="btn btn-warning" (click)="clear()">Clear</button>
+    <section formGroupName="address">
+      <div class="col-12">
+        <label for="inputStreet" class="form-label">Street</label>
+        <input
+          formControlName="street"
+          type="text"
+          class="form-control"
+          id="inputStreet"
+          placeholder="1234 Main St"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCity"
+          formControlName="city"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">State</label>
+        <select id="inputState" class="form-select" formControlName="state">
+          <option value="" disabled>Choose a state</option>
+          <option *ngFor="let state of stateOptions">{{ state }}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputZip"
+          formControlName="zip"
+        />
+      </div>
+    </section>
+    <button class="btn btn-success mt-2" type="submit">Save</button>
+    <button class="btn btn-warning mt-2" (click)="clear()">Clear</button>
   </form>
 </div>
