@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,7 +7,16 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  signUpForm!: FormGroup; //Variable to store our form group
+  signUpForm = this.fb.group({
+    email: [''],
+    password: [''],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: [''],
+    }),
+  }); //Variable to store our form group
   stateOptions: string[] = ['PA', 'OH', 'MI'];
 
   userAddressInfo: any = {
@@ -17,20 +26,9 @@ export class SignUpComponent implements OnInit {
     zip: '12345',
   };
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.signUpForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
-      address: new FormGroup({
-        street: new FormControl(''),
-        city: new FormControl(''),
-        state: new FormControl(''),
-        zip: new FormControl(''),
-      }),
-    });
-  }
+  ngOnInit() {}
 
   autoFillAddress() {
     this.signUpForm.patchValue({
